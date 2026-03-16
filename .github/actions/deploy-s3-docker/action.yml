@@ -1,0 +1,19 @@
+name: 'Deploy to AWS S3'
+description: 'Deploy a static website via AWS S3'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+inputs:
+  bucket: #this will take by github actions and generate env variable with the name INPUT_BUCKET
+    description: 'The name of the S3 bucket to deploy to'
+    required: true
+  bucket-region:
+    description: 'The AWS region where the S3 bucket is located'
+    required: false
+    default: 'us-east-1'
+  dist-folder:
+    description: 'The folder containing the static website files to deploy'
+    required: true
+outputs:
+  website-url:
+    description: 'The URL of the deployed website'
